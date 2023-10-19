@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.AdminDashboardActivity"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/imageButton_account"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:src="@drawable/icon_account_black"/>
+    <TextView
+        android:id="@+id/textView_emailUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Admin Email Loading..."/>
+    <Button
+        android:id="@+id/button_logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out"/>
+    <Button
+        android:id="@+id/button_addCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add category"/>
+    <Button
+        android:id="@+id/button_addBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add book"/>
+    <EditText
+        android:id="@+id/editText_searchCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView_bookCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        tools:listitem="@layout/category_row">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

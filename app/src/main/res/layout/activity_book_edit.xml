@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.AdminBookEditActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/imageButton_goBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_back_black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Book"
+            android:textSize="40sp"
+            android:layout_margin="20sp"/>
+    </LinearLayout>
+
+    <EditText
+    android:id="@+id/titleEt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawablePadding="10dp"
+    android:hint="Book Title"
+    android:inputType="textPersonName|textCapSentences"
+    android:padding="10dp"
+    android:textColor="@color/black"
+    android:textColorHint="@color/gray01"
+    android:textSize="16sp"/>
+
+    <EditText
+    android:id="@+id/descriptionEt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawablePadding="10dp"
+    android:hint="Book Description"
+    android:gravity="top"
+    android:inputType="textMultiLine|textCapSentences"
+    android:padding="10dp"
+    android:textColor="@color/black"
+    android:textColorHint="@color/gray01"
+    android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/categoryTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableEnd="@drawable/icon_drop_down_black"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="Book Category"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray01"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="Update"
+        android:layout_below="@id/categoryTv"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

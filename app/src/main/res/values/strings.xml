@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AppReadBook</string>
+    <string name="go_to_login_activity">Go to <b>Login Activity</b></string>
+</resources>

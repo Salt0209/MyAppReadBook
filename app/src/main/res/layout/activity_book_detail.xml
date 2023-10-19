@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Book.BookDetailActivity"
+    android:orientation="vertical">
+
+  <ImageButton
+      android:id="@+id/imageButton_goBack"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/icon_back_black"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Money..."
+      android:textSize="20sp"
+      android:layout_margin="2sp"/>
+  <TextView
+      android:id="@+id/textView_userMoney"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="N/A"
+      android:textSize="20sp"
+      android:layout_margin="2sp"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Detail Book:"
+      android:textSize="20sp"
+      android:layout_margin="2sp"/>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <!--            Book preview-->
+    <RelativeLayout
+        android:id="@+id/pdfRl"
+        android:layout_width="110dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/gray02">
+
+      <!--                Pdf view-->
+      <com.github.barteksc.pdfviewer.PDFView
+          android:id="@+id/pdfView"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
+
+      <ProgressBar
+          android:id="@+id/progressBar"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
+    <!--            Book title-->
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_toEndOf="@+id/pdfRl"
+        android:text="Title of Book"
+        />
+
+    <!--                Table-->
+    <TableLayout
+        android:layout_below="@id/titleTv"
+        android:layout_toEndOf="@id/pdfRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <TableRow>
+        <TextView
+            android:id="@+id/categoryLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:text="Category"/>
+
+        <TextView
+            android:id="@+id/categoryTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:text="N/A"/>
+
+      </TableRow>
+
+      <TableRow
+          android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/dateLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:text="Date"/>
+
+        <TextView
+            android:id="@+id/dateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:text="N/A"/>
+
+      </TableRow>
+      <TableRow
+          android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/sizeLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:text="Size"/>
+
+        <TextView
+            android:id="@+id/sizeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:text="N/A"/>
+
+      </TableRow>
+
+      <TableRow
+          android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/viewsLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:text="Views"/>
+
+        <TextView
+            android:id="@+id/viewsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:text="N/A"/>
+
+      </TableRow>
+
+      <TableRow
+          android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/downloadsLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:text="Downloads"/>
+
+        <TextView
+            android:id="@+id/downloadsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:text="N/A"/>
+
+      </TableRow>
+
+      <TableRow
+          android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/pagesLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:text="Pages"/>
+
+        <TextView
+            android:id="@+id/pagesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:text="N/A"/>
+
+      </TableRow>
+
+    </TableLayout>
+
+  </RelativeLayout>
+  <TextView
+      android:id="@+id/descriptionTv"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:text="The description of the book"
+      android:textColor="@color/black"/>
+  <TextView
+      android:layout_marginTop="10dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Book Price:"/>
+  <TextView
+      android:id="@+id/textView_bookPrice"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="N/A"/>
+  <Button
+      android:layout_marginTop="50dp"
+      android:id="@+id/button_purchaseBook"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Mua ngay"/>
+  <LinearLayout
+      android:id="@+id/bookOptionsLl"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginTop="20dp"
+      android:layout_alignParentBottom="true"
+      android:background="@color/design_default_color_primary">
+
+    <!--    Button: Open to view pdf-->
+    <Button
+        android:id="@+id/button_read"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Read"
+        android:textSize="8sp"
+        />
+
+    <!--    Button: Download pdf-->
+    <Button
+        android:id="@+id/button_download"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Download"
+        android:textSize="8sp"
+        />
+
+    <!--        Button: Add/Remove favourite-->
+    <Button
+        android:id="@+id/button_actionFavourite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Add Favourite"
+        android:textSize="8sp"
+        android:layout_weight="1"
+        />
+
+
+  </LinearLayout>
+
+  </LinearLayout>

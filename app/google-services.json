@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "166411518884",
+    "project_id": "appreadbook-8ae8f",
+    "storage_bucket": "appreadbook-8ae8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166411518884:android:81e1399a1ee2b22a7c7731",
+        "android_client_info": {
+          "package_name": "com.example.appreadbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5VTDTsmefTUi8gmyr-mkHoA5vhuzt8OI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
