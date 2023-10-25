@@ -15,7 +15,7 @@ import com.example.appreadbook.Adapter.AdapterBookFavourite;
 import com.example.appreadbook.Admin.AdminHomeActivity;
 import com.example.appreadbook.Model.ModelBook;
 import com.example.appreadbook.R;
-import com.example.appreadbook.User.UserBasicDashboardActivity;
+import com.example.appreadbook.User.UserHomeActivity;
 import com.example.appreadbook.databinding.ActivityProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(userType.equals("userBasic")){
-                    Intent intent = new Intent(ProfileActivity.this, UserBasicDashboardActivity.class);
+                    Intent intent = new Intent(ProfileActivity.this, UserHomeActivity.class);
                     startActivity(intent);
                 }
                 else if(userType.equals("admin")){

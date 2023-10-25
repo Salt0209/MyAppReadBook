@@ -53,7 +53,7 @@
             android:name=".Admin.AdminHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".User.UserBasicDashboardActivity"
+            android:name=".User.UserHomeActivity"
             android:exported="false" />
         <activity
             android:name=".Account.LoginActivity"

@@ -14,7 +14,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.appreadbook.Admin.AdminHomeActivity;
-import com.example.appreadbook.User.UserBasicDashboardActivity;
+import com.example.appreadbook.User.UserHomeActivity;
 import com.example.appreadbook.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot snapshot) {
                         String userType = ""+snapshot.child("userType").getValue();
                         if(userType.equals("userBasic")){
-                            startActivity(new Intent(LoginActivity.this, UserBasicDashboardActivity.class));
+                            startActivity(new Intent(LoginActivity.this, UserHomeActivity.class));
                             finish();
                         }
                         else if(userType.equals("admin")){

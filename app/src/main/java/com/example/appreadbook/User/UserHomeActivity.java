@@ -12,18 +12,13 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.appreadbook.Account.ProfileActivity;
 import com.example.appreadbook.Book.BookUserFragment;
 import com.example.appreadbook.MainActivity;
 import com.example.appreadbook.Model.ModelCategory;
-import com.example.appreadbook.MyApplication;
-import com.example.appreadbook.databinding.ActivityUserBasicDashboardBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.appreadbook.databinding.ActivityUserHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,10 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class UserBasicDashboardActivity extends AppCompatActivity {
-    private ActivityUserBasicDashboardBinding binding;
+public class UserHomeActivity extends AppCompatActivity {
+    private ActivityUserHomeBinding binding;
 
     public ArrayList<ModelCategory> categoryArrayList;
     public ViewPagerAdapter viewPagerAdapter;
@@ -47,7 +41,7 @@ public class UserBasicDashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityUserBasicDashboardBinding.inflate(getLayoutInflater());
+        binding = ActivityUserHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -61,7 +55,7 @@ public class UserBasicDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-                startActivity(new Intent(UserBasicDashboardActivity.this,MainActivity.class));
+                startActivity(new Intent(UserHomeActivity.this,MainActivity.class));
                 finish();
             }
         });
@@ -70,7 +64,7 @@ public class UserBasicDashboardActivity extends AppCompatActivity {
         binding.profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserBasicDashboardActivity.this,ProfileActivity.class));
+                startActivity(new Intent(UserHomeActivity.this,ProfileActivity.class));
             }
         });
 

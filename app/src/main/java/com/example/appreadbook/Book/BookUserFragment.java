@@ -13,11 +13,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.appreadbook.Adapter.AdapterBookAdmin;
 import com.example.appreadbook.Adapter.AdapterBookUser;
-import com.example.appreadbook.Admin.AdminBookListActivity;
 import com.example.appreadbook.Model.ModelBook;
-import com.example.appreadbook.User.UserBasicDashboardActivity;
 import com.example.appreadbook.databinding.FragmentBookUserBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

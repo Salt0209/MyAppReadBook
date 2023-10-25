@@ -51,7 +51,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         initUI();
         loadCategoriesFromDatabase();
 
-        binding.editTextSearchCategory.addTextChangedListener(new TextWatcher() {
+        binding.searchEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -80,14 +80,14 @@ public class AdminHomeActivity extends AppCompatActivity {
         });
 
 
-        binding.imageButtonAccount.setOnClickListener(new View.OnClickListener() {
+        binding.accountIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
-        binding.buttonLogOut.setOnClickListener(new View.OnClickListener() {
+        binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
@@ -95,14 +95,14 @@ public class AdminHomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        binding.buttonAddCategory.setOnClickListener(new View.OnClickListener() {
+        binding.addCategoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, AdminCategoryAddActivity.class);
                 startActivity(intent);
             }
         });
-        binding.buttonAddBook.setOnClickListener(new View.OnClickListener() {
+        binding.addBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, AdminBookAddActivity.class);
@@ -114,10 +114,10 @@ public class AdminHomeActivity extends AppCompatActivity {
     private void initUI() {
         //Constructor recycleView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        binding.recycleViewBookCategory.setLayoutManager(linearLayoutManager);
+        binding.categoriesRv.setLayoutManager(linearLayoutManager);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        binding.recycleViewBookCategory.addItemDecoration(dividerItemDecoration);
+        binding.categoriesRv.addItemDecoration(dividerItemDecoration);
     }
     private void loadCategoriesFromDatabase(){
         arrayList_category = new ArrayList<>();
@@ -132,7 +132,7 @@ public class AdminHomeActivity extends AppCompatActivity {
                 }
 
                 adapterCategory = new AdapterCategory(AdminHomeActivity.this,arrayList_category);
-                binding.recycleViewBookCategory.setAdapter(adapterCategory);
+                binding.categoriesRv.setAdapter(adapterCategory);
 
             }
             @Override
@@ -150,7 +150,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         }
         else{
             String email = firebaseUser.getEmail();
-            binding.textViewEmailUser.setText(email);
+            binding.emailTv.setText(email);
         }
     }
 }

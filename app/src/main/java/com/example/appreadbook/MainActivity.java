@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.example.appreadbook.Account.LoginActivity;
 import com.example.appreadbook.Account.SignUpActivity;
-import com.example.appreadbook.User.UserBasicDashboardActivity;
 import com.example.appreadbook.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
