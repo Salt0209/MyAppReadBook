@@ -13,28 +13,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/textView_bookId"
+            android:id="@+id/idTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Book Id"
+            android:text="Id"
             android:maxLines="1"/>
         <TextView
-            android:id="@+id/textView_bookTitle"
+            android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_below="@+id/textView_bookId"
+            android:layout_below="@+id/idTv"
             android:text="Book Title"
             android:layout_marginLeft="20dp"
             android:maxLines="1"/>
 
         <TextView
-            android:id="@+id/textView_purchaseDate"
+            android:id="@+id/dateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:text="dd/MM/yyyy"
-            android:layout_toEndOf="@id/textView_bookTitle"
+            android:layout_toEndOf="@id/titleTv"
             android:gravity="right"
             android:layout_alignParentRight="true"
             android:maxLines="1"/>

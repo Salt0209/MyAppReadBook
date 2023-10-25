@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageButton
-            android:id="@+id/imageButton_goBack"
+        <ImageView
+            android:id="@+id/backIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_back_black"/>
@@ -23,6 +23,28 @@
             android:textSize="40sp"
             android:layout_margin="20sp"/>
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout_pdf"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/gray02">
+
+
+        <!-- pdf view -->
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar_loadPdf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.github.barteksc.pdfviewer.PDFView>
+    </RelativeLayout>
 
     <EditText
     android:id="@+id/titleEt"

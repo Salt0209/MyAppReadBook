@@ -64,27 +64,28 @@ public class AdminBookAddActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        loadUnit();
         loadBookCategories();
 
-        binding.imageButtonGoBack.setOnClickListener(new View.OnClickListener() {
+        binding.backIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        binding.buttonAttachBook.setOnClickListener(new View.OnClickListener() {
+        binding.attachIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pdfPickIntent();
             }
         });
-        binding.textViewCategory.setOnClickListener(new View.OnClickListener() {
+        binding.categoryTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickCategory();
             }
         });
-        binding.buttonSubmit.setOnClickListener(new View.OnClickListener() {
+        binding.submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateData();
@@ -93,6 +94,11 @@ public class AdminBookAddActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void loadUnit() {
+        binding.progressBarLoadPdf.setVisibility(View.INVISIBLE);
+        binding.progressBarSubmit.setVisibility(View.INVISIBLE);
     }
 
     private void pickCategory() {
@@ -116,7 +122,7 @@ public class AdminBookAddActivity extends AppCompatActivity {
                             selectedCategoryTitle = categoryTitleArrayList.get(which);
                             selectedCategoryId = categoryIdArrayList.get(which);
                             //set to category textview
-                            binding.textViewCategory.setText(selectedCategoryTitle);
+                            binding.categoryTv.setText(selectedCategoryTitle);
 
                             Log.d(TAG, "onClick: Selected category " + selectedCategoryId + " " + selectedCategoryTitle);
 //                            Toast.makeText(AdminBookAddActivity.this, "" + selectedCategoryId + " " + selectedCategoryTitle, Toast.LENGTH_SHORT).show();
@@ -164,9 +170,9 @@ public class AdminBookAddActivity extends AppCompatActivity {
         Log.d(TAG, "validateData: validating data");
 
         //get data
-        title = binding.editTextBookTitle.getText().toString().trim();
-        description = binding.editTextBookDescription.getText().toString().trim();
-        bookPrice = Integer.parseInt(binding.editTextBookPrice.getText().toString().trim());
+        title = binding.titleEt.getText().toString().trim();
+        description = binding.descriptionEt.getText().toString().trim();
+        bookPrice = Integer.parseInt(binding.priceEt.getText().toString().trim());
 
         //validate data
         if (TextUtils.isEmpty(title)) {
@@ -255,7 +261,7 @@ public class AdminBookAddActivity extends AppCompatActivity {
         //Step 2:Upload pdf to firebase storage
         Log.d(TAG, "uploadPdfToStorage: uploading to storage...");
 
-        binding.progressBarUpload.setVisibility(View.VISIBLE);
+        binding.submitBtn.setVisibility(View.VISIBLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
@@ -315,7 +321,7 @@ public class AdminBookAddActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        binding.progressBarUpload.setVisibility(View.GONE);
+                        binding.submitBtn.setVisibility(View.GONE);
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Log.d(TAG, "onSuccess: Successfully uploaded... ");
                         Toast.makeText(AdminBookAddActivity.this, "Successfully uploaded...", Toast.LENGTH_SHORT).show();
@@ -330,7 +336,7 @@ public class AdminBookAddActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        binding.progressBarUpload.setVisibility(View.GONE);
+                        binding.submitBtn.setVisibility(View.GONE);
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Log.d(TAG, "onFailure: Failed to upload to db due to " + e.getMessage());
                         Toast.makeText(AdminBookAddActivity.this, "Failed to upload to db due to " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -357,7 +363,7 @@ public class AdminBookAddActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         // Handle the "Cancel" button click action here
                         dialog.dismiss();
-                        Intent intent = new Intent(AdminBookAddActivity.this, AdminDashboardActivity.class);
+                        Intent intent = new Intent(AdminBookAddActivity.this, AdminHomeActivity.class);
                         startActivity(intent);
                     }
                 });

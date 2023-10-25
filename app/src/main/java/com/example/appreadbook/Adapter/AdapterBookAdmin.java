@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -141,7 +142,7 @@ public class AdapterBookAdmin extends RecyclerView.Adapter<AdapterBookAdmin.Book
         PDFView pdfView;
         ProgressBar progressBar_loadPdf;
         TextView bookTitle, bookDescription, bookCategory, bookSize, bookDate;
-        ImageButton buttonOption;
+        ImageView buttonOption;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -149,11 +150,11 @@ public class AdapterBookAdmin extends RecyclerView.Adapter<AdapterBookAdmin.Book
             pdfView = binding.pdfView;
             progressBar_loadPdf = binding.progressBarLoadPdf;
             bookTitle = binding.textViewBookTitle;
-            bookDescription = binding.textViewBookDescription;
-            bookCategory = binding.textViewBookCategory;
-            bookSize = binding.textViewBookSize;
+            bookDescription = binding.descriptionTv;
+            bookCategory = binding.categoryTv;
+            bookSize = binding.sizeTv;
             bookDate = binding.dateTv;
-            buttonOption = binding.buttonOption;
+            buttonOption = binding.optionIv;
         }
     }
 }

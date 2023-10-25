@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.appreadbook.Admin.AdminCategoryAddActivity;
 import com.example.appreadbook.Model.ModelUser;
 import com.example.appreadbook.databinding.ActivitySignUpBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,9 +26,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -161,16 +165,27 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void checkExitEmail(String userEmail) {
-        DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("Users");
-        Query query = ref.child("email").equalTo(binding.emailEt.getText().toString().trim());
-        if(query!=null){
-            Log.d(TAG, "onDataChange: Tai khoan da ton tai");
-            Toast.makeText(SignUpActivity.this, "Email is used for other account", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Log.d(TAG, "onDataChange: Tai khoan chua ton tai");
-            createUserAccount();
-        }
+
+        DatabaseReference reference = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("Users");
+        Query query= reference
+                .orderByChild("email")
+                .equalTo(userEmail);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Toast.makeText(SignUpActivity.this," Email is used for other account....",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    createUserAccount();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 

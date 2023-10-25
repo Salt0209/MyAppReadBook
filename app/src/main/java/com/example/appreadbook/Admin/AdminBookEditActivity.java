@@ -59,7 +59,7 @@ public class AdminBookEditActivity extends AppCompatActivity {
         });
 
         //handle click, go to previous screen
-        binding.imageButtonGoBack.setOnClickListener(new View.OnClickListener() {
+        binding.backIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();

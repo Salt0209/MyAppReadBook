@@ -239,8 +239,8 @@ public class BookDetailActivity extends AppCompatActivity {
 
         // Create and show the AlertDialog
         AlertDialog alertDialog = alertDialogBuilder.create();
-        ImageView closeButton = customView.findViewById(R.id.closeButton);
-        Button continueButton = customView.findViewById(R.id.button_goToPayment);
+        ImageView closeButton = customView.findViewById(R.id.closeBtn);
+        Button continueButton = customView.findViewById(R.id.gotoPaymentBtn);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

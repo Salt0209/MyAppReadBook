@@ -50,10 +50,7 @@
             android:name=".Account.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".User.UserVipDashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Admin.AdminDashboardActivity"
+            android:name=".Admin.AdminHomeActivity"
             android:exported="false" />
         <activity
             android:name=".User.UserBasicDashboardActivity"

@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imageButton_goBack"
+        <ImageView
+            android:id="@+id/backIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_back_black" />
 
         <Button
-            android:id="@+id/button_addBook"
+            android:id="@+id/addBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add book"
@@ -40,7 +40,7 @@
 
     <!--        Subtitle/Category of book-->
     <TextView
-        android:id="@+id/textView_subTitle"
+        android:id="@+id/categoryTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -48,7 +48,7 @@
         android:textColor="@color/black"
         android:layout_below="@id/textView_title"/>
     <EditText
-        android:id="@+id/editText_searchBook"
+        android:id="@+id/searchEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -62,9 +62,9 @@
         android:textColor="@color/black"
         />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView_books"
+        android:id="@+id/booksRv"
         android:layout_margin="5dp"
-        android:layout_below="@id/editText_searchBook"
+        android:layout_below="@id/searchEt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

@@ -19,7 +19,7 @@ import com.example.appreadbook.Adapter.AdapterCategory;
 import com.example.appreadbook.MainActivity;
 import com.example.appreadbook.Model.ModelCategory;
 import com.example.appreadbook.Account.ProfileActivity;
-import com.example.appreadbook.databinding.ActivityAdminDashboardBinding;
+import com.example.appreadbook.databinding.ActivityAdminHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,8 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AdminDashboardActivity extends AppCompatActivity {
-    private ActivityAdminDashboardBinding binding;
+public class AdminHomeActivity extends AppCompatActivity {
+    private ActivityAdminHomeBinding binding;
     private FirebaseAuth firebaseAuth;
     private static String TAG="ADMIN_DASHBOARD_ACTIVITY_TAG";
     private ArrayList<ModelCategory> arrayList_category;
@@ -42,7 +42,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAdminDashboardBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         
@@ -83,7 +83,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         binding.imageButtonAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminDashboardActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(AdminHomeActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
@@ -91,21 +91,21 @@ public class AdminDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-                Intent intent = new Intent(AdminDashboardActivity.this, MainActivity.class);
+                Intent intent = new Intent(AdminHomeActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
         binding.buttonAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminDashboardActivity.this, AdminCategoryAddActivity.class);
+                Intent intent = new Intent(AdminHomeActivity.this, AdminCategoryAddActivity.class);
                 startActivity(intent);
             }
         });
         binding.buttonAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminDashboardActivity.this, AdminBookAddActivity.class);
+                Intent intent = new Intent(AdminHomeActivity.this, AdminBookAddActivity.class);
                 startActivity(intent);
             }
         });
@@ -131,7 +131,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
                     arrayList_category.add(modelCategory);
                 }
 
-                adapterCategory = new AdapterCategory(AdminDashboardActivity.this,arrayList_category);
+                adapterCategory = new AdapterCategory(AdminHomeActivity.this,arrayList_category);
                 binding.recycleViewBookCategory.setAdapter(adapterCategory);
 
             }
@@ -145,7 +145,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     private void checkUserIsLoggedIn() {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser==null){
-            startActivity(new Intent(AdminDashboardActivity.this, MainActivity.class));
+            startActivity(new Intent(AdminHomeActivity.this, MainActivity.class));
             finish();
         }
         else{

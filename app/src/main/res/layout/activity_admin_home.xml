@@ -4,43 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.AdminDashboardActivity"
+    tools:context=".Admin.AdminHomeActivity"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/imageButton_account"
+    <ImageView
+        android:clickable="true"
+        android:id="@+id/accountIv"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:text="Profile"
         android:src="@drawable/icon_account_black"/>
     <TextView
-        android:id="@+id/textView_emailUser"
+        android:id="@+id/emailTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Admin Email Loading..."/>
     <Button
-        android:id="@+id/button_logOut"
+        android:id="@+id/logoutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Log out"/>
     <Button
-        android:id="@+id/button_addCategory"
+        android:id="@+id/addCategoryBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add category"/>
     <Button
-        android:id="@+id/button_addBook"
+        android:id="@+id/addBookBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add book"/>
     <EditText
-        android:id="@+id/editText_searchCategory"
+        android:id="@+id/searchEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Search"/>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView_bookCategory"
+        android:id="@+id/categoriesRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"

@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.appreadbook.Admin.AdminDashboardActivity;
+import com.example.appreadbook.Admin.AdminHomeActivity;
 import com.example.appreadbook.User.UserBasicDashboardActivity;
 import com.example.appreadbook.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -158,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }
                         else if(userType.equals("admin")){
-                            startActivity(new Intent(LoginActivity.this, AdminDashboardActivity.class));
+                            startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
                             finish();
                         }
                     }

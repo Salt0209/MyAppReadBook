@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -137,7 +138,7 @@ public class AdapterBookFavourite extends RecyclerView.Adapter<AdapterBookFavour
         PDFView pdfView;
         ProgressBar progressBar;
         TextView titleTv, descriptionTv, categoryTv, sizeTv, dateTv;
-        ImageButton removeFavBtn;
+        ImageView removeFavBtn;
         public BookFavouriteViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -145,7 +146,7 @@ public class AdapterBookFavourite extends RecyclerView.Adapter<AdapterBookFavour
             pdfView = binding.pdfView;
             progressBar = binding.progressBar;
             titleTv = binding.titleTv;
-            removeFavBtn = binding.removeFavBtn;
+            removeFavBtn = binding.favouriteIv;
             descriptionTv = binding.descriptionTv;
             categoryTv = binding.categoryTv;
             sizeTv = binding.sizeTv;

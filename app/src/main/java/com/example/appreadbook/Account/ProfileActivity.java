@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.appreadbook.Adapter.AdapterBookFavourite;
-import com.example.appreadbook.Admin.AdminDashboardActivity;
+import com.example.appreadbook.Admin.AdminHomeActivity;
 import com.example.appreadbook.Model.ModelBook;
 import com.example.appreadbook.R;
 import com.example.appreadbook.User.UserBasicDashboardActivity;
@@ -61,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if(userType.equals("admin")){
-                    Intent intent = new Intent(ProfileActivity.this, AdminDashboardActivity.class);
+                    Intent intent = new Intent(ProfileActivity.this, AdminHomeActivity.class);
                     startActivity(intent);
                 }
                 else {
@@ -161,6 +161,5 @@ public class ProfileActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="120dp"
     android:orientation="vertical">
     <ImageView
-        android:id="@+id/closeButton"
+        android:id="@+id/closeBtn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/icon_close_black"
@@ -16,11 +16,10 @@
         android:layout_height="wrap_content"
         android:text="You dont have enough money!"/>
     <Button
-        android:id="@+id/button_goToPayment"
+        android:id="@+id/gotoPaymentBtn"
         android:text="Go to payment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:visibility="gone"/>
+        android:layout_gravity="end" />
 
 </LinearLayout>

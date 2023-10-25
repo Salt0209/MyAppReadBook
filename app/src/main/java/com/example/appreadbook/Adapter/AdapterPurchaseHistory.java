@@ -104,9 +104,9 @@ public class AdapterPurchaseHistory extends RecyclerView.Adapter<AdapterPurchase
         public PurchaseHistoryHolder(@NonNull View itemView) {
             super(itemView);
 
-            bookId = binding.textViewBookId;
-            bookTitle = binding.textViewBookTitle;
-            purchaseDate = binding.textViewPurchaseDate;
+            bookId = binding.idTv;
+            bookTitle = binding.titleTv;
+            purchaseDate = binding.dateTv;
 
 
 
