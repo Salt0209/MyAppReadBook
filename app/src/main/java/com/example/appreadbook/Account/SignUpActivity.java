@@ -168,7 +168,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         DatabaseReference reference = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("Users");
         Query query= reference
-                .orderByChild("email")
+                .orderByChild("userEmail")
                 .equalTo(userEmail);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
