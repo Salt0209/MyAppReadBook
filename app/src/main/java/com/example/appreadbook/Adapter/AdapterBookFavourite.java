@@ -146,11 +146,13 @@ public class AdapterBookFavourite extends RecyclerView.Adapter<AdapterBookFavour
             pdfView = binding.pdfView;
             progressBar = binding.progressBar;
             titleTv = binding.titleTv;
-            removeFavBtn = binding.favouriteIv;
+            removeFavBtn = binding.removeFavBtn;
             descriptionTv = binding.descriptionTv;
             categoryTv = binding.categoryTv;
             sizeTv = binding.sizeTv;
             dateTv = binding.dateTv;
+
+            categoryTv.setSelected(true);
         }
     }
 

@@ -149,12 +149,14 @@ public class AdapterBookAdmin extends RecyclerView.Adapter<AdapterBookAdmin.Book
 
             pdfView = binding.pdfView;
             progressBar_loadPdf = binding.progressBarLoadPdf;
-            bookTitle = binding.textViewBookTitle;
+            bookTitle = binding.titleTv;
             bookDescription = binding.descriptionTv;
             bookCategory = binding.categoryTv;
             bookSize = binding.sizeTv;
             bookDate = binding.dateTv;
-            buttonOption = binding.optionIv;
+            buttonOption = binding.moreBtn;
+
+            bookCategory.setSelected(true);
         }
     }
 }

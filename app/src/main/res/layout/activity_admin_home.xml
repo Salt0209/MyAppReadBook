@@ -1,56 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Admin.AdminHomeActivity"
-    android:orientation="vertical">
+    android:background="@drawable/back01">
 
-    <ImageView
-        android:clickable="true"
-        android:id="@+id/accountIv"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:src="@drawable/icon_account_black"/>
-    <TextView
-        android:id="@+id/emailTv"
+    <!--    toolbar-->
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Admin Email Loading..."/>
-    <Button
-        android:id="@+id/logoutBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log out"/>
-    <Button
-        android:id="@+id/addCategoryBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add category"/>
-    <Button
-        android:id="@+id/addBookBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add book"/>
-    <EditText
-        android:id="@+id/searchEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search"/>
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/shape_toolbar02">
+
+        <!--        ImageButton: Open profile-->
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person_white"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"/>
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dashboard Admin"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/subTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="admin@gmail.com"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_below="@+id/titleTv"
+            android:layout_centerHorizontal="true"/>
+        <ImageButton
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_power_white"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+    <!--    category-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoriesRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/bottomLl"
+        android:layout_below="@id/searchEt"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/category_row">
 
 
     </androidx.recyclerview.widget.RecyclerView>
 
-</LinearLayout>
+    <!--    search-->
+
+    <EditText
+        android:id="@+id/searchEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarRl"
+        android:hint="Search"
+        android:textColorHint="@color/gray01"
+        android:drawableStart="@drawable/ic_search_gray"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"/>
+
+
+    <LinearLayout
+        android:id="@+id/bottomLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        >
+        <Button
+            android:id="@+id/addCategoryBtn"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button01"
+            android:minHeight="50dp"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Add Category"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/white"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addBookBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_book_white"
+            app:tint="@color/white"
+            app:fabCustomSize="50dp"
+            android:backgroundTint="@color/purple_500"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

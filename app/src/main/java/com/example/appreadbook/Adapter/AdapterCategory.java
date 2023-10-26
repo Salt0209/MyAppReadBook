@@ -229,6 +229,8 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Catego
             deleteBtn = binding.buttonDelete;
             editBtn = binding.buttonEdit;
 
+
+
         }
     }
 

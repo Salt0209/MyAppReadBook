@@ -53,7 +53,7 @@ public class AdminBookListActivity extends AppCompatActivity {
         }
 
         //set pdf category
-        binding.categoryTv.setText(categoryTitle);
+        binding.subTitleTv.setText(categoryTitle);
 
         //initUI();
         loadBookList();
@@ -78,13 +78,13 @@ public class AdminBookListActivity extends AppCompatActivity {
             }
         });
 
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        binding.addBtn.setOnClickListener(new View.OnClickListener() {
+        binding.addBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminBookListActivity.this, AdminBookAddActivity.class);
@@ -92,16 +92,16 @@ public class AdminBookListActivity extends AppCompatActivity {
             }
         });
     }
-    private void initUI() {
-        //Constructor recycleView
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        binding.booksRv.setLayoutManager(linearLayoutManager);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        binding.booksRv.addItemDecoration(dividerItemDecoration);
-
-
-    }
+//    private void initUI() {
+//        //Constructor recycleView
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        binding.bookRv.setLayoutManager(linearLayoutManager);
+//
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+//        binding.bookRv.addItemDecoration(dividerItemDecoration);
+//
+//
+//    }
 
     private void loadBookList() {
         bookArrayList = new ArrayList<>();
@@ -125,7 +125,7 @@ public class AdminBookListActivity extends AppCompatActivity {
                         }
                         //set up adapter
                         adapterBookAdmin = new AdapterBookAdmin(AdminBookListActivity.this, bookArrayList);
-                        binding.booksRv.setAdapter(adapterBookAdmin);
+                        binding.bookRv.setAdapter(adapterBookAdmin);
 
                     }
 
@@ -158,7 +158,7 @@ public class AdminBookListActivity extends AppCompatActivity {
                         }
                         //set up adapter
                         adapterBookAdmin = new AdapterBookAdmin(AdminBookListActivity.this, bookFilter);
-                        binding.booksRv.setAdapter(adapterBookAdmin);
+                        binding.bookRv.setAdapter(adapterBookAdmin);
 
                     }
 

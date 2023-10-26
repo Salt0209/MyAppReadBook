@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 validateData();
             }
         });
-        binding.forgotPasswordBtn.setOnClickListener(new View.OnClickListener() {
+        binding.forgotTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(LoginActivity.this, PasswordForgotActivity.class);
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
+        binding.noAccountTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(LoginActivity.this, SignUpActivity.class);
@@ -103,9 +103,6 @@ public class LoginActivity extends AppCompatActivity {
         }
         binding.emailEt.setText(userEmail);
 
-        //binding.editTextUserEmail.setText("admin@admin.com");
-        binding.emailEt.setText("t1@gmail.com");
-        binding.passwordEt.setText("111111");
     }
 
     private void validateData() {

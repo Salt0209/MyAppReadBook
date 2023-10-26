@@ -43,15 +43,14 @@
             android:maxLines="1"
             android:text="Book Title"/>
 
-        <ImageView
-            android:clickable="true"
-            android:id="@+id/favouriteIv"
+        <ImageButton
+            android:id="@+id/removeFavBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
             android:padding="5dp"
-            android:src="@drawable/icon_favourite_white"
+            android:src="@drawable/ic_favorite_white"
             app:tint="@color/black" />
 
         <TextView
@@ -68,13 +67,20 @@
 
         <TextView
             android:id="@+id/categoryTv"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:text="Category"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:maxLines="1"
-            android:text="Category"/>
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
+
+            />
 
         <TextView
             android:id="@+id/sizeTv"

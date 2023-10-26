@@ -110,11 +110,13 @@ public class AdapterBookUser extends RecyclerView.Adapter<AdapterBookUser.BookUs
 
             titleTv = binding.textViewBookTitle;
             descriptionTv = binding.textViewBookDescription;
-            categoryTv = binding.textViewBookCategory;
+            categoryTv = binding.categoryTv;
             sizeTv = binding.textViewBookSize;
             dateTv = binding.dateTv;
             pdfView = binding.pdfView;
             progressBar = binding.progressBarLoadPdf;
+
+            categoryTv.setSelected(true);
         }
     }
 }

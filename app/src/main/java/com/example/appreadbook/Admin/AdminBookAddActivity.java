@@ -67,13 +67,13 @@ public class AdminBookAddActivity extends AppCompatActivity {
         loadUnit();
         loadBookCategories();
 
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        binding.attachIv.setOnClickListener(new View.OnClickListener() {
+        binding.attachBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pdfPickIntent();

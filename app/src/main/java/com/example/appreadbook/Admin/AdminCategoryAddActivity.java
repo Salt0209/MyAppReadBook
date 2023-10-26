@@ -37,14 +37,14 @@ public class AdminCategoryAddActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        binding.imageButtonGoBack.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
 
-        binding.buttonAddCategory.setOnClickListener(new View.OnClickListener() {
+        binding.submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateData();
@@ -53,7 +53,7 @@ public class AdminCategoryAddActivity extends AppCompatActivity {
     }
 
     private void validateData() {
-        bookCategory = binding.editTextCategoryAdd.getText().toString().trim();
+        bookCategory = binding.categoryEt.getText().toString().trim();
 
         if(TextUtils.isEmpty(bookCategory)){
             Toast.makeText(this,"Please enter category....",Toast.LENGTH_SHORT).show();

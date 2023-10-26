@@ -63,13 +63,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        binding.imageViewUserAvatar.setOnClickListener(new View.OnClickListener() {
+        binding.avatarIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickImageFromGallery();
@@ -101,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         userAvatar = data.getData();
                         Log.d(TAG, "onActivityResult: Picked from gallery "+userAvatar);
-                        binding.imageViewUserAvatar.setImageURI(userAvatar);
+                        binding.avatarIv.setImageURI(userAvatar);
                     }
                     else {
                         Toast.makeText(SignUpActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
@@ -113,27 +113,27 @@ public class SignUpActivity extends AppCompatActivity {
         userName = binding.nameEt.getText().toString().trim();
         userEmail = binding.emailEt.getText().toString().trim();
         userPassword = binding.passwordEt.getText().toString().trim();
-        userConfirmPassword = binding.cpasswordEt.getText().toString().trim();
+        userConfirmPassword = binding.cPasswordEt.getText().toString().trim();
 
         int check=0;
         if(TextUtils.isEmpty(userName)) {
-            binding.textviewMessage.setText("Please type your name");
+            binding.messageTv.setText("Please type your name");
             return;
         }
         if(TextUtils.isEmpty(userEmail)){
-            binding.textviewMessage.setText("Please type your email");
+            binding.messageTv.setText("Please type your email");
             return;
         }
         if(TextUtils.isEmpty(userPassword)){
-            binding.textviewMessage.setText("Please type your password");
+            binding.messageTv.setText("Please type your password");
             return;
         }
         if(TextUtils.isEmpty(userConfirmPassword)){
-            binding.textviewMessage.setText("Please confirm your password");
+            binding.messageTv.setText("Please confirm your password");
             return;
         }
         if(!userConfirmPassword.equals(userPassword)){
-            binding.textviewMessage.setText("Confirm password does not match");
+            binding.messageTv.setText("Confirm password does not match");
             return;
         }
         if(userAvatar != null){
@@ -195,6 +195,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(SignUpActivity.this, "Sign up successfully", Toast.LENGTH_SHORT).show();
+                addUserInfo();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -202,6 +203,43 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(SignUpActivity.this, ""+e.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+    private void addUserInfo() {
+        timestamp = System.currentTimeMillis();
+        userId =firebaseAuth.getUid();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userId",userId);
+        hashMap.put("userName",userName);
+        hashMap.put("userEmail",userEmail);
+        hashMap.put("userType",userTypeDefault);
+        hashMap.put("userMoney",userMoneyDefault);
+        hashMap.put("userTimestamp",timestamp);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME)
+                .getReference("Users");
+        ref.child(userId).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(SignUpActivity.this, "Successfully add to database", Toast.LENGTH_SHORT).show();
+
+                        //go to Login
+                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("userEmail",userEmail);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SignUpActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
     }
 
     private void addUserInfo(String uploadedUserAvatar) {

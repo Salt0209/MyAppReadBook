@@ -47,7 +47,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         initUI();
         loadPurchaseHistoryFromDatabase();
 
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -61,8 +61,6 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
             finish();
         }
         else{
-            String email = firebaseUser.getEmail();
-            binding.emailTv.setText(email);
         }
     }
     private void initUI() {

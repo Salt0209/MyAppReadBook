@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -153,7 +154,7 @@ public class UserHomeActivity extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
     }
 
-    public class ViewPagerAdapter extends FragmentPagerAdapter{
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
         private ArrayList<BookUserFragment> fragmentList = new ArrayList<>();
         private ArrayList<String> fragmentTitleList = new ArrayList<>();
         private Context context;

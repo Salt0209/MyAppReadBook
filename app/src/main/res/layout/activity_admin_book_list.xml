@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Admin.AdminBookListActivity"
-    android:orientation="vertical"
-    >
-    <LinearLayout
+    android:background="@drawable/back01">
+
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/shape_toolbar02">
 
-        <ImageView
-            android:id="@+id/backIv"
+        <ImageButton
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_back_black" />
-
-        <Button
-            android:id="@+id/addBtn"
+            android:src="@drawable/ic_back_white"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"/>
+        <ImageButton
+            android:id="@+id/addBookBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add book"
-            android:layout_weight="1"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/ic_add_white" />
 
-    </LinearLayout>
+        <!-- Title -->
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Books"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            />
 
-    <TextView
-        android:id="@+id/textView_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Books"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        />
+        <!--        Subtitle/Category of book-->
+        <TextView
+            android:id="@+id/subTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Category"
+            android:textColor="@color/white"
+            android:layout_below="@id/titleTv"/>
 
-    <!--        Subtitle/Category of book-->
-    <TextView
-        android:id="@+id/categoryTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Category"
-        android:textColor="@color/black"
-        android:layout_below="@id/textView_title"/>
+    </RelativeLayout>
+
+    <!--    Search-->
     <EditText
         android:id="@+id/searchEt"
         android:layout_width="match_parent"
@@ -55,14 +67,18 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/white"
+        android:layout_below="@id/toolbarRl"
         android:padding="10dp"
         android:hint="Search"
         android:textColorHint="@color/gray02"
+        android:drawableStart="@drawable/ic_search_gray"
         android:drawablePadding="10dp"
         android:textColor="@color/black"
         />
+
+    <!-- pdf list -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/booksRv"
+        android:id="@+id/bookRv"
         android:layout_margin="5dp"
         android:layout_below="@id/searchEt"
         android:layout_width="match_parent"
@@ -71,4 +87,6 @@
         tools:listitem="@layout/book_row_admin">
 
     </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.appreadbook.Admin;
 
 import static com.example.appreadbook.Constant.DATABASE_NAME;
+import static com.example.appreadbook.Constant.MAX_BYTES_PDF;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.appreadbook.MyApplication;
 import com.example.appreadbook.databinding.ActivityBookEditBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,7 +61,7 @@ public class AdminBookEditActivity extends AppCompatActivity {
         });
 
         //handle click, go to previous screen
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -110,10 +112,20 @@ public class AdminBookEditActivity extends AppCompatActivity {
                         selectedCategoryId = ""+snapshot.child("bookCategoryId").getValue();
                         String description = ""+snapshot.child("bookDescription").getValue();
                         String title = ""+snapshot.child("bookTitle").getValue();
+                        String price = ""+snapshot.child("bookPrice").getValue();
+                        String url = ""+snapshot.child("bookUrl").getValue();
 
                         //set to views
                         binding.titleEt.setText(title);
                         binding.descriptionEt.setText(description);
+                        binding.priceEt.setText(price);
+                        MyApplication.loadPdfFromUrlSinglePage(
+                                ""+url,
+                                ""+title,
+                                binding.pdfView,
+                                binding.progressBarLoadPdf,
+                                null
+                        );
 
                         Log.d(TAG, "onDataChange: Loading book category info");
                         DatabaseReference refBookCategory = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("BookCategories");

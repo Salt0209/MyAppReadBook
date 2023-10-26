@@ -14,7 +14,7 @@
         android:icon="@drawable/logo"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppReadBook"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".Book.BookViewActivity"

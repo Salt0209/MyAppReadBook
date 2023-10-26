@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".User.UserHomeActivity"
-    android:background="@color/gray03">
+    android:background="@drawable/back01"
+    >
 
     <!--    Toolbar-->
     <RelativeLayout
         android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="#34AD8D">
+        android:background="@drawable/shape_toolbar02">
 
         <!--        ImageButton: Open profile-->
         <ImageButton
             android:id="@+id/profileBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_account_white"
+            android:src="@drawable/ic_person_white"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:background="@android:color/transparent"/>
@@ -46,7 +47,7 @@
             android:id="@+id/logoutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_log_out_white"
+            android:src="@drawable/ic_power_white"
             android:background="@android:color/transparent"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="10dp"

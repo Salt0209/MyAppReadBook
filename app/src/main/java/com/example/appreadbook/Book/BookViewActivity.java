@@ -46,7 +46,7 @@ public class BookViewActivity extends AppCompatActivity {
 
         loadBookDetails();
 
-        binding.imageButtonGoBack.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -71,7 +71,7 @@ public class BookViewActivity extends AppCompatActivity {
                         bookName = ""+snapshot.child("bookTitle").getValue();
                         Log.d(TAG, "onDataChange: PDF URL: "+pdfUrl);
 
-                        binding.titleTv.setText(bookName);
+                        binding.toolbarTitleTv.setText(bookName);
 
                         //Step(2) Load pdf using that url from firebase storage
                         loadBookFromUrl(pdfUrl);
@@ -99,7 +99,7 @@ public class BookViewActivity extends AppCompatActivity {
                                     public void onPageChanged(int page, int pageCount) {
                                         //set current and total pages in toolbar subtitle
                                         int currentPage = (page + 1); //do +1 because page start from 0
-                                        binding.pageTv.setText(currentPage + "/" + pageCount);
+                                        binding.toolbarSubtitleTv.setText(currentPage + "/" + pageCount);
                                         Log.d(TAG, "onPageChanged: "+currentPage + "/" + pageCount);
                                     }
                                 })

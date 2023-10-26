@@ -49,7 +49,7 @@ public class PasswordForgotActivity extends AppCompatActivity {
 
         binding.progressBar.setVisibility(View.INVISIBLE);
         binding.gotoLoginTv.setVisibility(View.INVISIBLE);
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();

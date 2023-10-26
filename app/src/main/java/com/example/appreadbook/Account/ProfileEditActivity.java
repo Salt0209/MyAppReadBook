@@ -64,9 +64,9 @@ public class ProfileEditActivity extends AppCompatActivity {
         Glide.with(ProfileEditActivity.this)
                 .load(userAvatar)
                 .placeholder(R.drawable.avatar_default)
-                .into(binding.avatarIv);
+                .into(binding.profileIv);
 
-        binding.submitBtn.setEnabled(false);
+        binding.updateBtn.setEnabled(false);
 
         binding.nameEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,9 +79,9 @@ public class ProfileEditActivity extends AppCompatActivity {
                 String textChange = "";
                 textChange = binding.nameEt.getText().toString();
                 if(textChange.equals(userName)){
-                    binding.submitBtn.setEnabled(false);
+                    binding.updateBtn.setEnabled(false);
                 }else {
-                    binding.submitBtn.setEnabled(true);
+                    binding.updateBtn.setEnabled(true);
                 }
             }
 
@@ -91,20 +91,20 @@ public class ProfileEditActivity extends AppCompatActivity {
             }
         });
 
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        binding.avatarIv.setOnClickListener(new View.OnClickListener() {
+        binding.profileIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickImageFromGallery();
-                binding.submitBtn.setEnabled(true);
+                binding.updateBtn.setEnabled(true);
             }
         });
-        binding.submitBtn.setOnClickListener(new View.OnClickListener() {
+        binding.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateData();
@@ -211,7 +211,7 @@ public class ProfileEditActivity extends AppCompatActivity {
                         Glide.with(ProfileEditActivity.this)
                                 .load(userImage)
                                 .placeholder(R.drawable.avatar_default)
-                                .into(binding.avatarIv);
+                                .into(binding.profileIv);
                     }
                     else {
                         Toast.makeText(ProfileEditActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();

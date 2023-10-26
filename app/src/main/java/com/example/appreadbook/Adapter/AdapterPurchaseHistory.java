@@ -52,6 +52,24 @@ public class AdapterPurchaseHistory extends RecyclerView.Adapter<AdapterPurchase
         String bookId = modelPurchase.getBookId();
 
 
+        holder.bookId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.bookId.setSelected(true);
+            }
+        });
+        holder.bookTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.bookTitle.setSelected(true);
+            }
+        });
+        holder.purchaseDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.purchaseDate.setSelected(true);
+            }
+        });
         //handle click -> go to detail
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +125,6 @@ public class AdapterPurchaseHistory extends RecyclerView.Adapter<AdapterPurchase
             bookId = binding.idTv;
             bookTitle = binding.titleTv;
             purchaseDate = binding.dateTv;
-
-
-
 
 
         }

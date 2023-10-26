@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +23,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.appreadbook.Adapter.AdapterComment;
+import com.example.appreadbook.Model.ModelComment;
 import com.example.appreadbook.MyApplication;
 import com.example.appreadbook.R;
 import com.example.appreadbook.databinding.ActivityBookDetailBinding;
+import com.example.appreadbook.databinding.DialogCommentAddBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BookDetailActivity extends AppCompatActivity {
@@ -45,11 +50,13 @@ public class BookDetailActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
 
-    private ProgressDialog progressDialog;
 
     //pdf id, get from intent
     private String bookId, bookTitle, bookUrl;
     private Integer userMoney,bookPriceCheck;
+
+    private ArrayList<ModelComment> commentArrayList;
+    private AdapterComment adapterComment;
 
 
 
@@ -63,23 +70,24 @@ public class BookDetailActivity extends AppCompatActivity {
         loadUnit();
         loadUserMoney();
         loadBookDetails();
+        loadComments();
         checkIsFavourite();
 
 
 
-        binding.imageButtonGoBack.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        binding.buttonPurchaseBook.setOnClickListener(new View.OnClickListener() {
+        binding.buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 purchaseBook();
             }
         });
-        binding.buttonRead.setOnClickListener(new View.OnClickListener() {
+        binding.readBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BookDetailActivity.this, "READING....", Toast.LENGTH_SHORT).show();
@@ -88,7 +96,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-        binding.buttonDownload.setOnClickListener(new View.OnClickListener() {
+        binding.downloadBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BookDetailActivity.this, "DOWNLOADING...", Toast.LENGTH_SHORT).show();
@@ -102,7 +110,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 }
             }
         });
-        binding.buttonActionFavourite.setOnClickListener(new View.OnClickListener() {
+        binding.favouriteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isInMyFavourite) {
@@ -117,7 +125,111 @@ public class BookDetailActivity extends AppCompatActivity {
 
             }
         });
+        binding.addCommentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //must logged in to add cmt
+                if (firebaseAuth.getCurrentUser() == null){
+                    Toast.makeText(BookDetailActivity.this, "You're not logged in...", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    addCommentDialog();
+                }
+            }
+        });
     }
+    private void loadComments() {
+        commentArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("Books");
+        ref.child(bookId).child("Comments")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        commentArrayList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            ModelComment model = ds.getValue(ModelComment.class);
+                            commentArrayList.add(model);
+                        }
+                        adapterComment = new AdapterComment(BookDetailActivity.this, commentArrayList);
+                        binding.commentsRv.setAdapter(adapterComment);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+        private String comment = "";
+    private void addCommentDialog() {
+        DialogCommentAddBinding commentAddBinding = DialogCommentAddBinding.inflate(LayoutInflater.from(this));
+
+        //set up alert dialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialog);
+        builder.setView(commentAddBinding.getRoot());
+
+        //create and show alert dialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        //handle click.add comment
+        commentAddBinding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        //handle click, add comment
+        commentAddBinding.submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comment = commentAddBinding.commentEt.getText().toString().trim();
+                if(TextUtils.isEmpty(comment)){
+                    Toast.makeText(BookDetailActivity.this, "Enter your comment...", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    alertDialog.dismiss();
+                    addComment();
+                }
+            }
+        });
+    }
+    private void addComment() {
+        //show progress
+
+        //timestamp for comment id, comment time
+        String timestamp = ""+ System.currentTimeMillis();
+
+        //setup data to add in db for comment
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("id",""+timestamp);
+        hashMap.put("bookId",""+bookId);
+        hashMap.put("timestamp",""+timestamp);
+        hashMap.put("comment",""+comment);
+        hashMap.put("uid",""+firebaseAuth.getUid());
+
+        //DB path to add data into it
+//        Books > bookId > Comments > commentId > commentData
+        DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("Books");
+        ref.child(bookId).child("Comments").child(timestamp)
+                .setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(BookDetailActivity.this, "Comment Added", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(BookDetailActivity.this, "Failed to add comment due to "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
     private ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
@@ -132,8 +244,8 @@ public class BookDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         bookId = intent.getStringExtra("bookId");
         MyApplication.incrementBookViewsCount(bookId);
-        binding.buttonRead.setEnabled(false);
-        binding.buttonDownload.setEnabled(false);
+        binding.readBookBtn.setEnabled(false);
+        binding.downloadBookBtn.setEnabled(false);
         DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference();
         ref.child("Books").child(bookId).child("bookPrice").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -141,9 +253,9 @@ public class BookDetailActivity extends AppCompatActivity {
                 while (!snapshot.exists());
                 bookPriceCheck = snapshot.getValue(Integer.class);
                 if(bookPriceCheck==0 ){
-                    binding.buttonRead.setEnabled(true);
-                    binding.buttonDownload.setEnabled(true);
-                    binding.buttonPurchaseBook.setVisibility(View.GONE);
+                    binding.readBookBtn.setEnabled(true);
+                    binding.downloadBookBtn.setEnabled(true);
+                    binding.buyBtn.setVisibility(View.GONE);
                 }
             }
 
@@ -167,9 +279,9 @@ public class BookDetailActivity extends AppCompatActivity {
                         purchased = snapshot.exists(); //true: if exits
                         if (purchased) {
                             //exits in purchase history
-                            binding.buttonRead.setEnabled(true);
-                            binding.buttonDownload.setEnabled(true);
-                            binding.buttonPurchaseBook.setVisibility(View.GONE);
+                            binding.readBookBtn.setEnabled(true);
+                            binding.downloadBookBtn.setEnabled(true);
+                            binding.buyBtn.setVisibility(View.GONE);
                         } else {
 
                         }
@@ -185,7 +297,7 @@ public class BookDetailActivity extends AppCompatActivity {
     private void purchaseBook() {
         MyApplication.checkLoggedIn(BookDetailActivity.this);
 
-        Integer cost = Integer.parseInt(binding.textViewBookPrice.getText().toString());
+        Integer cost = Integer.parseInt(binding.buyBtn.getText().toString());
         if(userMoney<cost){
             loadAlertMoneyNoEnough();
         }
@@ -206,11 +318,11 @@ public class BookDetailActivity extends AppCompatActivity {
                         isInMyFavourite = snapshot.exists(); //true: if exits
                         if (isInMyFavourite) {
                             //exits in favourite
-                            //binding.favouriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_white, 0, 0);
-                            binding.buttonActionFavourite.setText("Remove Favourite");
+                            binding.favouriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_white, 0, 0);
+                            binding.favouriteBtn.setText("Remove Favourite");
                         } else {
-                            //binding.favouriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_border_white, 0, 0);
-                            binding.buttonActionFavourite.setText("Add Favourite");
+                            binding.favouriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_border_white, 0, 0);
+                            binding.favouriteBtn.setText("Add Favourite");
 
                         }
                     }
@@ -266,7 +378,7 @@ public class BookDetailActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         userMoney = snapshot.child("userMoney").getValue(Integer.class);
-                        binding.textViewUserMoney.setText(userMoney.toString());
+                        binding.userMoneyTv.setText(userMoney.toString());
                     }
 
                     @Override
@@ -291,10 +403,10 @@ public class BookDetailActivity extends AppCompatActivity {
                         Log.d(TAG, "onSuccess: userMoney updated");
                         Toast.makeText(BookDetailActivity.this, "User money updated", Toast.LENGTH_SHORT).show();
 
-                        binding.buttonPurchaseBook.setEnabled(false);
+                        binding.buyBtn.setEnabled(false);
 
-                        binding.buttonRead.setEnabled(true);
-                        binding.buttonDownload.setEnabled(true);
+                        binding.readBookBtn.setEnabled(true);
+                        binding.downloadBookBtn.setEnabled(true);
 
 
                     }
@@ -358,7 +470,7 @@ public class BookDetailActivity extends AppCompatActivity {
                         binding.viewsTv.setText(viewsCount.replace("null", "N/A"));
                         binding.downloadsTv.setText(downloadsCount.replace("null", "N/A"));
                         binding.dateTv.setText(date);
-                        binding.textViewBookPrice.setText(bookPrice.replaceAll("\\b0\\b","Free"));
+                        binding.buyBtn.setText(bookPrice.replaceAll("\\b0\\b","Free"));
 
                     }
 

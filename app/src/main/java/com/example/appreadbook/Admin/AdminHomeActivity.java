@@ -80,7 +80,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         });
 
 
-        binding.accountIv.setOnClickListener(new View.OnClickListener() {
+        binding.profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, ProfileActivity.class);
@@ -150,7 +150,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         }
         else{
             String email = firebaseUser.getEmail();
-            binding.emailTv.setText(email);
+            binding.subTitleTv.setText(email);
         }
     }
 }
