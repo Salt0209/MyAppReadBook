@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
@@ -134,9 +135,33 @@ public class LoginActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(LoginActivity.this, "Vui long dang nhap lai!!"+e.getMessage(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(LoginActivity.this, "Vui long dang nhap lai!!"+e.getMessage(),Toast.LENGTH_LONG).show();\
+                checkAccount();
                 binding.progressBar.setVisibility(View.GONE);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            }
+        });
+    }
+
+    private void checkAccount() {
+        DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("Users");
+        Query query= ref
+                .orderByChild("userEmail")
+                .equalTo(userEmail);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Toast.makeText(LoginActivity.this," Your password is wrong",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(LoginActivity.this," Username doesn't exit....",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
