@@ -101,9 +101,9 @@ public class UserHomeActivity extends AppCompatActivity {
 
                 //Load bookCategories = static eg. all, most viewed, most downloaded
                 // add data to models
-                ModelCategory modelAll = new ModelCategory("01","All",1);
-                ModelCategory modelMostViewed = new ModelCategory("02","Most Viewed",1);
-                ModelCategory modelMostDownloaded = new ModelCategory("03","Most Downloaded",1);
+                ModelCategory modelAll = new ModelCategory("01","Tất cả",1);
+                ModelCategory modelMostViewed = new ModelCategory("02","Xem nhiều nhất",1);
+                ModelCategory modelMostDownloaded = new ModelCategory("03","Tải nhiều nhất",1);
 
                 //add model to list
                 categoryArrayList.add(modelAll);

@@ -188,7 +188,7 @@ public class MyApplication extends Application {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Log.d(TAG, "onSuccess: Deleted from db too");
-                                        Toast.makeText(context, "Book Deleted Successfully....", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, "Xoá thành công....", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -258,7 +258,7 @@ public class MyApplication extends Application {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Added to your purchase history...", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Added to your purchase history...", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -287,7 +287,7 @@ public class MyApplication extends Application {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Added to your favourite list...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Đã thêm vào danh mục yêu thích...", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -307,7 +307,7 @@ public class MyApplication extends Application {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Removed from your favourite list...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Đã xoá khỏi danh mục yêu thích...", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -357,7 +357,7 @@ public class MyApplication extends Application {
             out.write(bytes);
             out.close();
 
-            Toast.makeText(context, "Saved to Download Folder", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Tải xuống thành công!", Toast.LENGTH_SHORT).show();
             Log.d(TAG_DOWNLOAD, "saveDownloadedBook: Saved to Download Folder");
 
             incrementBookDownloadedCount(bookId);

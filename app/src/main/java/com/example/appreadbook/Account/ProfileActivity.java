@@ -82,9 +82,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void moreOptionDialog() {
-        String[] options = {"Edit Profile", "Change Password","Purchase History"};
+        String[] options = {"Sửa hồ sơ", "Đổi mật khẩu","Lịch sử mua hàng"};
         AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
-        builder.setTitle("Choose Options")
+        builder.setTitle("Lựa chọn:")
                 .setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -127,7 +127,13 @@ public class ProfileActivity extends AppCompatActivity {
                         String timestamp = "" + snapshot.child("userTimestamp").getValue();
 
                         String formattedDate = MyApplication.formatTimestamp(Long.parseLong(timestamp));
-                        binding.accountTypeTv.setText(userType);
+                        if(userType.equals("userBasic")){
+                            binding.accountTypeTv.setText("Cơ bản");
+                        }
+                        else if(userType.equals("Admin")){
+                            binding.accountTypeTv.setText(userType);
+                        }
+
                         binding.memberDateTv.setText(formattedDate);
                         binding.nameTv.setText(userName);
                         binding.emailTv.setText(userEmail);

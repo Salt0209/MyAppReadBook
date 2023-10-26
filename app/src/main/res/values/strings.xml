@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AppReadBook</string>
-    <string name="go_to_login_activity">Go to <b>Login Activity</b></string>
-    <string name="new_user_sign_up">New User? <b>Sign up</b></string>
+    <string name="go_to_login_activity">Đi tới <b>Phiên đăng nhập</b></string>
+    <string name="new_user_sign_up">Chưa có tài khoản? <b>Đăng ký</b></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -117,23 +117,23 @@ public class SignUpActivity extends AppCompatActivity {
 
         int check=0;
         if(TextUtils.isEmpty(userName)) {
-            binding.messageTv.setText("Please type your name");
+            binding.messageTv.setText("Chưa nhập tên");
             return;
         }
         if(TextUtils.isEmpty(userEmail)){
-            binding.messageTv.setText("Please type your email");
+            binding.messageTv.setText("Chưa nhập email");
             return;
         }
         if(TextUtils.isEmpty(userPassword)){
-            binding.messageTv.setText("Please type your password");
+            binding.messageTv.setText("Chưa nhập mật khẩu");
             return;
         }
         if(TextUtils.isEmpty(userConfirmPassword)){
-            binding.messageTv.setText("Please confirm your password");
+            binding.messageTv.setText("Chưa xác nhận mật khẩu");
             return;
         }
         if(!userConfirmPassword.equals(userPassword)){
-            binding.messageTv.setText("Confirm password does not match");
+            binding.messageTv.setText("Mật khẩu xác nhận không khớp");
             return;
         }
         if(userAvatar != null){
@@ -174,7 +174,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    Toast.makeText(SignUpActivity.this," Email is used for other account....",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this," Email đã được sử dụng....",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     createUserAccount();
@@ -194,7 +194,7 @@ public class SignUpActivity extends AppCompatActivity {
         firebaseAuth.createUserWithEmailAndPassword(userEmail,userPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                Toast.makeText(SignUpActivity.this, "Sign up successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                 addUserInfo();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -221,7 +221,7 @@ public class SignUpActivity extends AppCompatActivity {
         ref.child(userId).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(SignUpActivity.this, "Successfully add to database", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SignUpActivity.this, "Successfully add to database", Toast.LENGTH_SHORT).show();
 
                         //go to Login
                         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
@@ -262,7 +262,7 @@ public class SignUpActivity extends AppCompatActivity {
         ref.child(userId).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(SignUpActivity.this, "Successfully add to database", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SignUpActivity.this, "Successfully add to database", Toast.LENGTH_SHORT).show();
 
                 //go to Login
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);

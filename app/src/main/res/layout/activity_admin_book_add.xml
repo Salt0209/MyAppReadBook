@@ -29,14 +29,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="Add a New Book"
+            android:text="Thêm sách mới"
             android:textColor="@color/white"
-            android:textSize="28sp"
-            android:layout_centerInParent="true"
-            />
+            android:textSize="28sp" />
 
 
         <ImageButton
@@ -96,7 +94,7 @@
             android:background="@drawable/shape_edittext01"
             android:drawableStart="@drawable/ic_pdf_gray"
             android:drawablePadding="10dp"
-            android:hint="Book Title"
+            android:hint="Tiêu đề"
             android:inputType="textPersonName|textCapWords"
             android:padding="10dp"
             android:textColor="@color/black"
@@ -121,7 +119,7 @@
             android:background="@drawable/shape_edittext01"
             android:drawableStart="@drawable/ic_pdf_gray"
             android:drawablePadding="10dp"
-            android:hint="Book Description"
+            android:hint="Mô tả"
             android:inputType="textMultiLine|textCapSentences"
             android:padding="10dp"
             android:textSize="16sp"
@@ -147,7 +145,7 @@
             android:background="@drawable/shape_edittext01"
             android:drawableStart="@drawable/ic_money_gray"
             android:drawablePadding="10dp"
-            android:hint="Book Price"
+            android:hint="Giá"
             android:inputType="textMultiLine|textCapSentences"
             android:padding="10dp"
             android:textSize="16sp"
@@ -174,7 +172,7 @@
             android:background="@drawable/shape_edittext01"
             android:drawableStart="@drawable/ic_category_gray"
             android:drawableEnd="@drawable/ic_down_gray"                    android:drawablePadding="10dp"
-            android:hint="Book Category"
+            android:hint="Danh mục"
             android:padding="10dp"
             android:textSize="16sp"
             android:textColor="@color/black"
@@ -192,7 +190,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="10dp"
-        android:text="Upload"
+        android:text="Thêm"
         android:textColor="@color/white"/>
     <ProgressBar
         android:id="@+id/progressBarSubmit"

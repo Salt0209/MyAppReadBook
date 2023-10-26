@@ -44,7 +44,7 @@ public class PasswordChangeActivity extends AppCompatActivity {
 
         loadUnit();
 
-        binding.backIv.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -79,7 +79,7 @@ public class PasswordChangeActivity extends AppCompatActivity {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout_changePassword);
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
-        constraintSet.connect(R.id.button_submit,ConstraintSet.TOP,R.id.newPasswordEt,ConstraintSet.BOTTOM,0);
+        constraintSet.connect(R.id.submitBtn,ConstraintSet.TOP,R.id.newPasswordEt,ConstraintSet.BOTTOM,0);
 //                constraintSet.connect(R.id.imageView,ConstraintSet.TOP,R.id.check_answer2,ConstraintSet.TOP,0);
         constraintSet.applyTo(constraintLayout);
     }
@@ -94,7 +94,7 @@ public class PasswordChangeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         userEmail = intent.getStringExtra("userEmail");
-        binding.textViewUserEmail.setText(userEmail);
+        binding.textViewUserEmail.append(userEmail);
 
     }
     private void reLoginUser(){

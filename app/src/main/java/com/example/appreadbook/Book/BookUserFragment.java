@@ -70,15 +70,15 @@ public class BookUserFragment extends Fragment {
         binding = FragmentBookUserBinding.inflate(LayoutInflater.from(getContext()),container,false);
 
         Log.d(TAG, "onCreateView: Category: "+category);
-        if(category.equals("All")){
+        if(categoryId.equals("01")){
             //load all books
             loadAllBooks();
         }
-        else if(category.equals("Most Viewed")){
+        else if(categoryId.equals("02")){
             loadMostViewedDownloadedBook("bookViewCount");
 
         }
-        else if(category.equals("Most Downloaded")){
+        else if(categoryId.equals("03")){
             loadMostViewedDownloadedBook("bookDownloadCount");
         }
         else {

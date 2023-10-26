@@ -319,10 +319,10 @@ public class BookDetailActivity extends AppCompatActivity {
                         if (isInMyFavourite) {
                             //exits in favourite
                             binding.favouriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_white, 0, 0);
-                            binding.favouriteBtn.setText("Remove Favourite");
+                            binding.favouriteBtn.setText("Xoá yêu thích");
                         } else {
                             binding.favouriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_favorite_border_white, 0, 0);
-                            binding.favouriteBtn.setText("Add Favourite");
+                            binding.favouriteBtn.setText("Yêu thích");
 
                         }
                     }
@@ -401,7 +401,7 @@ public class BookDetailActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d(TAG, "onSuccess: userMoney updated");
-                        Toast.makeText(BookDetailActivity.this, "User money updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BookDetailActivity.this, "Cảm ơn quý khách đã mua hàng!", Toast.LENGTH_SHORT).show();
 
                         binding.buyBtn.setEnabled(false);
 

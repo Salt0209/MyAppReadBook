@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Purchase History "
+            android:text="Lịch sử giao dịch "
             android:textColor="@color/white"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Book Title"
+            android:text="Tiêu đề sách"
             android:layout_marginLeft="20dp"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Purchase Date"
+            android:text="Ngày mua"
             android:gravity="right"
             android:textColor="@color/black"
             android:textSize="16sp"

@@ -30,7 +30,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="Edit Book Information"
+            android:text="Sửa thông tin sách"
             android:textColor="@color/white"
             android:textSize="28sp" />
     </RelativeLayout>
@@ -85,7 +85,7 @@
                     android:background="@drawable/shape_edittext01"
                     android:drawableStart="@drawable/ic_pdf_gray"
                     android:drawablePadding="10dp"
-                    android:hint="Book Title"
+                    android:hint="Tiêu đề"
                     android:inputType="textPersonName|textCapSentences"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -112,7 +112,7 @@
                     android:background="@drawable/shape_edittext01"
                     android:drawableStart="@drawable/ic_pdf_gray"
                     android:drawablePadding="10dp"
-                    android:hint="Book Description"
+                    android:hint="Mô tả"
                     android:gravity="top"
                     android:inputType="textMultiLine|textCapSentences"
                     android:padding="10dp"
@@ -140,7 +140,7 @@
                     android:background="@drawable/shape_edittext01"
                     android:drawableStart="@drawable/ic_money_gray"
                     android:drawablePadding="10dp"
-                    android:hint="Book Price"
+                    android:hint="Giá"
                     android:inputType="textMultiLine|textCapSentences"
                     android:padding="10dp"
                     android:textSize="16sp"
@@ -165,7 +165,7 @@
                     android:background="@drawable/shape_edittext01"
                     android:drawableStart="@drawable/ic_category_gray"
                     android:drawableEnd="@drawable/ic_down_gray"                    android:drawablePadding="10dp"
-                    android:hint="Book Category"
+                    android:hint="Danh mục"
                     android:padding="10dp"
                     android:textSize="16sp"
                     android:textColor="@color/black"
@@ -184,7 +184,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/shape_button01"
-                android:text="Update"
+                android:text="Cập nhật"
                 android:layout_below="@id/categoryTil"
                 android:textColor="@color/white"/>
         </RelativeLayout>

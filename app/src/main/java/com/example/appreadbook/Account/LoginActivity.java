@@ -152,10 +152,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    Toast.makeText(LoginActivity.this," Your password is wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this," Sai mật khẩu",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(LoginActivity.this," Username doesn't exit....",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this," Tên đăng nhập không tồn tại....",Toast.LENGTH_SHORT).show();
                 }
             }
 
