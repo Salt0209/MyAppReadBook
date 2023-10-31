@@ -14,6 +14,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -58,6 +59,8 @@ public class BookDetailActivity extends AppCompatActivity {
     private ArrayList<ModelComment> commentArrayList;
     private AdapterComment adapterComment;
 
+    private String status="lock";
+
 
 
     @Override
@@ -93,6 +96,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 //Toast.makeText(BookDetailActivity.this, "READING....", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(BookDetailActivity.this, BookViewActivity.class);
                 intent1.putExtra("bookId", bookId);
+                intent1.putExtra("status",status);
                 startActivity(intent1);
             }
         });
@@ -244,7 +248,7 @@ public class BookDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         bookId = intent.getStringExtra("bookId");
         MyApplication.incrementBookViewsCount(bookId);
-        binding.readBookBtn.setEnabled(false);
+//        binding.readBookBtn.setEnabled(false);
         binding.downloadBookBtn.setEnabled(false);
         DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference();
         ref.child("Books").child(bookId).child("bookPrice").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -253,9 +257,11 @@ public class BookDetailActivity extends AppCompatActivity {
                 while (!snapshot.exists());
                 bookPriceCheck = snapshot.getValue(Integer.class);
                 if(bookPriceCheck==0 ){
-                    binding.readBookBtn.setEnabled(true);
+//                    binding.readBookBtn.setEnabled(true);
+                    status = "unlock";
                     binding.downloadBookBtn.setEnabled(true);
                     binding.buyBtn.setVisibility(View.GONE);
+                    binding.downloadBookBtn.setBackgroundColor(ContextCompat.getColor(BookDetailActivity.this, com.google.android.material.R.color.design_default_color_primary));
                 }
             }
 
@@ -279,11 +285,13 @@ public class BookDetailActivity extends AppCompatActivity {
                         purchased = snapshot.exists(); //true: if exits
                         if (purchased) {
                             //exits in purchase history
-                            binding.readBookBtn.setEnabled(true);
+                            status="unlock";
+//                            binding.readBookBtn.setEnabled(true);
+                            binding.downloadBookBtn.setBackgroundColor(ContextCompat.getColor(BookDetailActivity.this, com.google.android.material.R.color.design_default_color_primary));
                             binding.downloadBookBtn.setEnabled(true);
                             binding.buyBtn.setVisibility(View.GONE);
                         } else {
-
+                            binding.downloadBookBtn.setBackgroundColor(ContextCompat.getColor(BookDetailActivity.this,R.color.gray05));
                         }
                     }
 
@@ -404,8 +412,9 @@ public class BookDetailActivity extends AppCompatActivity {
                         Toast.makeText(BookDetailActivity.this, "Cảm ơn quý khách đã mua hàng!", Toast.LENGTH_SHORT).show();
 
                         binding.buyBtn.setEnabled(false);
-
-                        binding.readBookBtn.setEnabled(true);
+                        status="unlock";
+                        binding.downloadBookBtn.setBackgroundColor(ContextCompat.getColor(BookDetailActivity.this, com.google.android.material.R.color.design_default_color_primary));
+//                        binding.readBookBtn.setEnabled(true);
                         binding.downloadBookBtn.setEnabled(true);
 
 

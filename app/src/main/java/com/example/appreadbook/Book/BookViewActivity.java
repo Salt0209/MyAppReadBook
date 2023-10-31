@@ -29,7 +29,7 @@ import com.google.firebase.storage.StorageReference;
 public class BookViewActivity extends AppCompatActivity {
     private ActivityBookViewBinding binding;
 
-    private String bookId,bookName;
+    private String bookId,bookName,status;
 
     private static final String TAG = "PDF_VIEW_TAG";
 
@@ -42,6 +42,7 @@ public class BookViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         bookId = intent.getStringExtra("bookId");
+        status = intent.getStringExtra("status");
         Log.d(TAG, "onCreate: BookId: " + bookId);
 
         loadBookDetails();
@@ -91,33 +92,64 @@ public class BookViewActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
                     public void onSuccess(byte[] bytes) {
-                        //load pdf using bytes
-                        binding.pdfView.fromBytes(bytes)
-                                .swipeHorizontal(false) //set false to scroll vertical, set true to swipe horizontal
-                                .onPageChange(new OnPageChangeListener() {
-                                    @Override
-                                    public void onPageChanged(int page, int pageCount) {
-                                        //set current and total pages in toolbar subtitle
-                                        int currentPage = (page + 1); //do +1 because page start from 0
-                                        binding.toolbarSubtitleTv.setText(currentPage + "/" + pageCount);
-                                        Log.d(TAG, "onPageChanged: "+currentPage + "/" + pageCount);
-                                    }
-                                })
-                                .onError(new OnErrorListener() {
-                                    @Override
-                                    public void onError(Throwable t) {
-                                        Log.d(TAG, "onError: "+t.getMessage());
-                                        Toast.makeText(BookViewActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .onPageError(new OnPageErrorListener() {
-                                    @Override
-                                    public void onPageError(int page, Throwable t) {
-                                        Log.d(TAG, "onPageError: "+t.getMessage());
-                                        Toast.makeText(BookViewActivity.this, "Error on page " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .load();
+                        if(status.equals("lock")){
+                            binding.pdfView.fromBytes(bytes)
+                                    .pages(0,1,2)
+                                    .swipeHorizontal(false) //set false to scroll vertical, set true to swipe horizontal
+                                    .onPageChange(new OnPageChangeListener() {
+                                        @Override
+                                        public void onPageChanged(int page, int pageCount) {
+                                            //set current and total pages in toolbar subtitle
+                                            int currentPage = (page + 1); //do +1 because page start from 0
+                                            binding.toolbarSubtitleTv.setText(currentPage + "/" + pageCount);
+                                            Log.d(TAG, "onPageChanged: " + currentPage + "/" + pageCount);
+                                        }
+                                    })
+                                    .onError(new OnErrorListener() {
+                                        @Override
+                                        public void onError(Throwable t) {
+                                            Log.d(TAG, "onError: " + t.getMessage());
+                                            Toast.makeText(BookViewActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .onPageError(new OnPageErrorListener() {
+                                        @Override
+                                        public void onPageError(int page, Throwable t) {
+                                            Log.d(TAG, "onPageError: " + t.getMessage());
+                                            Toast.makeText(BookViewActivity.this, "Error on page " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .load();
+                        }
+                        else if(status.equals("unlock")) {
+                            //load pdf using bytes
+                            binding.pdfView.fromBytes(bytes)
+                                    .swipeHorizontal(false) //set false to scroll vertical, set true to swipe horizontal
+                                    .onPageChange(new OnPageChangeListener() {
+                                        @Override
+                                        public void onPageChanged(int page, int pageCount) {
+                                            //set current and total pages in toolbar subtitle
+                                            int currentPage = (page + 1); //do +1 because page start from 0
+                                            binding.toolbarSubtitleTv.setText(currentPage + "/" + pageCount);
+                                            Log.d(TAG, "onPageChanged: " + currentPage + "/" + pageCount);
+                                        }
+                                    })
+                                    .onError(new OnErrorListener() {
+                                        @Override
+                                        public void onError(Throwable t) {
+                                            Log.d(TAG, "onError: " + t.getMessage());
+                                            Toast.makeText(BookViewActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .onPageError(new OnPageErrorListener() {
+                                        @Override
+                                        public void onPageError(int page, Throwable t) {
+                                            Log.d(TAG, "onPageError: " + t.getMessage());
+                                            Toast.makeText(BookViewActivity.this, "Error on page " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .load();
+                        }
                         binding.progressBar.setVisibility(View.GONE);
                     }
                 })
