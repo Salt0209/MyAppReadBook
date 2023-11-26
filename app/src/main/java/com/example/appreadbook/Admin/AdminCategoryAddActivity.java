@@ -103,7 +103,7 @@ public class AdminCategoryAddActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(AdminCategoryAddActivity.this,"Category added successfully....",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminCategoryAddActivity.this,"Them danh muc thanh cong!....",Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
