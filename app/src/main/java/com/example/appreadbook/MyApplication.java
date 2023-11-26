@@ -46,8 +46,6 @@ import java.util.Locale;
 
 public class MyApplication extends Application {
     private static final String TAG_DOWNLOAD = "APPLICATION_TAG";
-    private static final String STORAGE_NAME = "gs://appreadbook-8ae8f.appspot.com/";
-
 
 
 
@@ -133,6 +131,40 @@ public class MyApplication extends Application {
                         progressBar.setVisibility(View.INVISIBLE);
                         Log.d(TAG, "onFailure: failed getting file from url due to " + e.getMessage());
 
+                    }
+                });
+    }
+    public static void loadPdfFromUrlUser(String pdfUrl, String pdfTitle, PDFView pdfView, TextView pagesTv) {
+        //using url we can get file and its metadata from firebase storage
+        String TAG = "PDF_LOAD_SINGLE_TAG";
+        StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
+        ref.getBytes(MAX_BYTES_PDF)
+                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Log.d(TAG, "onSuccess: " + pdfTitle + " successfully got the file");
+
+                        //set to pdfView
+                        pdfView.fromBytes(bytes)
+                                .pages(0)
+                                .onLoad(new OnLoadCompleteListener() {
+                                    @Override
+                                    public void loadComplete(int nbPages) {
+                                        Log.d(TAG, "loadComplete: pdf loaded ");
+
+                                        //if pagesTv param is not null then set page numbers
+                                        if(pagesTv != null){
+                                            pagesTv.setText(""+nbPages);
+                                        }
+                                    }
+                                })
+                                .load();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: failed getting file from url due to " + e.getMessage());
                     }
                 });
     }

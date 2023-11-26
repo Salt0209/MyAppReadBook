@@ -1,5 +1,7 @@
 package com.example.appreadbook.Adapter;
 
+import static com.example.appreadbook.Constant.DATABASE_NAME;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,8 +36,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.CategoryViewHolder> implements Filterable {
-
-    private static final String DATABASE_NAME = "https://appreadbook-8ae8f-default-rtdb.asia-southeast1.firebasedatabase.app";
 
     private Context context;
 

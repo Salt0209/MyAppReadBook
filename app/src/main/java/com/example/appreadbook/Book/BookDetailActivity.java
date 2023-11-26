@@ -250,6 +250,13 @@ public class BookDetailActivity extends AppCompatActivity {
         MyApplication.incrementBookViewsCount(bookId);
 //        binding.readBookBtn.setEnabled(false);
         binding.downloadBookBtn.setEnabled(false);
+        binding.downloadBookBtn.setBackgroundColor(ContextCompat.getColor(BookDetailActivity.this,R.color.gray05));
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            checkPurchased();
+        }
         DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference();
         ref.child("Books").child(bookId).child("bookPrice").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -270,10 +277,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
             }
         });
-        firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
-            checkPurchased();
-        }
+
     }
     private void checkPurchased() {
         //logged in check if its in favourite list or not
@@ -291,7 +295,7 @@ public class BookDetailActivity extends AppCompatActivity {
                             binding.downloadBookBtn.setEnabled(true);
                             binding.buyBtn.setVisibility(View.GONE);
                         } else {
-                            binding.downloadBookBtn.setBackgroundColor(ContextCompat.getColor(BookDetailActivity.this,R.color.gray05));
+                            //binding.downloadBookBtn.setBackgroundColor(ContextCompat.getColor(BookDetailActivity.this,R.color.gray05));
                         }
                     }
 

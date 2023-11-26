@@ -1,5 +1,7 @@
 package com.example.appreadbook.Adapter;
 
+import static com.example.appreadbook.Constant.DATABASE_NAME;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -28,8 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class AdapterBookFavourite extends RecyclerView.Adapter<AdapterBookFavourite.BookFavouriteViewHolder> {
-
-    private static final String DATABASE_NAME = "https://appreadbook-8ae8f-default-rtdb.asia-southeast1.firebasedatabase.app";
 
     private Context context;
     public ArrayList<ModelBook> arrayList_book;

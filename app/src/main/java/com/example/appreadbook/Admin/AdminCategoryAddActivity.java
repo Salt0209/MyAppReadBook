@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.appreadbook.Constant;
 import com.example.appreadbook.databinding.ActivityCategoryAddBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,8 +24,6 @@ import java.util.HashMap;
 
 public class AdminCategoryAddActivity extends AppCompatActivity {
     private ActivityCategoryAddBinding binding;
-    private static final String DATABASE_NAME = "https://appreadbook-8ae8f-default-rtdb.asia-southeast1.firebasedatabase.app";
-
     private String bookCategory = "";
     private FirebaseAuth firebaseAuth;
 
@@ -64,7 +63,7 @@ public class AdminCategoryAddActivity extends AppCompatActivity {
     }
 
     private void checkExitCategory(String category) {
-        DatabaseReference reference = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("BookCategories");
+        DatabaseReference reference = FirebaseDatabase.getInstance(Constant.DATABASE_NAME).getReference("BookCategories");
         Query query= reference
                 .orderByChild("categoryName")
                 .equalTo(category);
@@ -97,7 +96,7 @@ public class AdminCategoryAddActivity extends AppCompatActivity {
 
 
         //add to firebase db.... Database Root > Categories > categoryId > category Info
-        DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("BookCategories");
+        DatabaseReference ref = FirebaseDatabase.getInstance(Constant.DATABASE_NAME).getReference("BookCategories");
 
         ref.child(""+timestamp)
                 .setValue(hashMap)

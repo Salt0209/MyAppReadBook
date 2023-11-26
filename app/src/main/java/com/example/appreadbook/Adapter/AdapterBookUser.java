@@ -66,11 +66,10 @@ public class AdapterBookUser extends RecyclerView.Adapter<AdapterBookUser.BookUs
         holder.descriptionTv.setText(description);
         holder.dateTv.setText(date);
 
-        MyApplication.loadPdfFromUrlSinglePage(
+        MyApplication.loadPdfFromUrlUser(
                 ""+pdfUrl,
                 ""+title,
                 holder.pdfView,
-                holder.progressBar,
                 null
         );
         MyApplication.loadCategory(
@@ -114,7 +113,7 @@ public class AdapterBookUser extends RecyclerView.Adapter<AdapterBookUser.BookUs
             sizeTv = binding.textViewBookSize;
             dateTv = binding.dateTv;
             pdfView = binding.pdfView;
-            progressBar = binding.progressBarLoadPdf;
+//            progressBar = binding.progressBarLoadPdf;
 
             categoryTv.setSelected(true);
         }

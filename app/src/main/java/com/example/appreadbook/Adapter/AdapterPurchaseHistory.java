@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appreadbook.Book.BookDetailActivity;
+import com.example.appreadbook.Constant;
 import com.example.appreadbook.Model.ModelBook;
 import com.example.appreadbook.MyApplication;
 import com.example.appreadbook.databinding.BookPurchaseHistoryBinding;
@@ -26,8 +27,6 @@ public class AdapterPurchaseHistory extends RecyclerView.Adapter<AdapterPurchase
     private BookPurchaseHistoryBinding binding;
 
     private Context context;
-    private static final String DATABASE_NAME = "https://appreadbook-8ae8f-default-rtdb.asia-southeast1.firebasedatabase.app";
-
 
     public ArrayList<ModelBook> arrayList_purchaseHistory;
 
@@ -89,7 +88,7 @@ public class AdapterPurchaseHistory extends RecyclerView.Adapter<AdapterPurchase
         long purchaseBookTimestamp = modelPurchase.getBookTimestamp();
         String purchaseDate = MyApplication.formatTimestamp(purchaseBookTimestamp);
 
-        DatabaseReference ref = FirebaseDatabase.getInstance(DATABASE_NAME).getReference("Books");
+        DatabaseReference ref = FirebaseDatabase.getInstance(Constant.DATABASE_NAME).getReference("Books");
         ref.child(bookId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

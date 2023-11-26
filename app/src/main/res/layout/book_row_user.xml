@@ -28,10 +28,6 @@
                 android:layout_height="match_parent">
 
                 <!--Progress Bar -->
-                <ProgressBar
-                    android:id="@+id/progressBar_loadPdf"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
 
             </com.github.barteksc.pdfviewer.PDFView>
         </RelativeLayout>

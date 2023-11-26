@@ -50,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private Uri userAvatar = null;
     private String userTypeDefault = "userBasic";
-    private int userMoneyDefault = 0;
+    private int userMoneyDefault = 5000000;
 
     private ModelUser modelUser=new ModelUser();
 
@@ -190,7 +190,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void createUserAccount() {
-        Toast.makeText(this, "Creating...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SignUpActivity.this, "Creating...", Toast.LENGTH_SHORT).show();
         firebaseAuth.createUserWithEmailAndPassword(userEmail,userPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {

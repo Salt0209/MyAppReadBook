@@ -1,5 +1,7 @@
 package com.example.appreadbook.Account;
 
+import static com.example.appreadbook.Constant.DATABASE_NAME;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,8 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
-    private static final String DATABASE_NAME = "https://appreadbook-8ae8f-default-rtdb.asia-southeast1.firebasedatabase.app";
-
     private FirebaseAuth firebaseAuth;
     private String userEmail = "";
     private String userPassword="";
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(binding.passwordEt.length()==6){
+                if(binding.passwordEt.length()>6){
                     validateData();
                 }
             }
