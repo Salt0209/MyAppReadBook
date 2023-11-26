@@ -71,7 +71,7 @@ public class AdminCategoryAddActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    Toast.makeText(AdminCategoryAddActivity.this,"Category exits....",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminCategoryAddActivity.this,"Danh muc da ton tai!....",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     addCategoryFirebase();
